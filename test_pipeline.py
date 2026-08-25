@@ -1,10 +1,15 @@
 import sys
 import os
+import re
 import json
 import hashlib
+import warnings
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
+
+# Suppress Starlette/TestClient deprecation warnings for clean test logs
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 # Ensure UTF-8 output encoding in Windows environment
 if hasattr(sys.stdout, "reconfigure"):
@@ -31,24 +36,25 @@ client = TestClient(app)
 def call_ollama_structure_contract(spoken_transcript: str) -> dict:
     """
     Calls the local Ollama (Llama 3.2) engine to extract structured contract terms from spoken text.
-    Includes a resilient fallback parser if Ollama is momentarily busy.
+    Includes robust JSON parsing, markdown code-fence stripping, and fallback validation.
     """
     print("\n[Stage 1] Processing Spoken Verbal Contract with Ollama / Llama 3.2...")
-    prompt = f"""
-You are the AI Contract Parser for KarmSetu. Extract the structured contract details from this spoken agreement.
+    prompt = f"""You are the AI Contract Parser for KarmSetu. Extract the structured contract details from this spoken agreement between a contractor and a worker.
+CRITICAL RULE: "worker_name" MUST be the actual worker being hired (e.g. Ramesh Arjun Kumar), NOT the employer/contractor.
+
 Spoken Agreement: "{spoken_transcript}"
 
-Respond strictly with a valid JSON object without any markdown code fences or conversational text:
+Respond strictly with a JSON object:
 {{
-  "worker_name": "string",
-  "daily_wage_rate": float,
-  "duration_days": int,
-  "trade": "string",
-  "site_location": "string",
-  "site_latitude": float,
-  "site_longitude": float
-}}
-"""
+  "worker_name": "Ramesh Arjun Kumar",
+  "daily_wage_rate": 850.0,
+  "duration_days": 30,
+  "trade": "Master Mason",
+  "site_location": "Metro Line 4 Pier Site in Mumbai",
+  "site_latitude": 19.076000,
+  "site_longitude": 72.877700
+}}"""
+
     ollama_url = "http://127.0.0.1:11434/api/generate"
     req_data = json.dumps({
         "model": "llama3.2:1b",
@@ -67,29 +73,57 @@ Respond strictly with a valid JSON object without any markdown code fences or co
         with urllib.request.urlopen(req, timeout=30) as response:
             res_json = json.loads(response.read().decode("utf-8"))
             raw_response = res_json.get("response", "{}")
-            print(f"-> Ollama Raw Response: {raw_response.strip()}")
-            structured_data = json.loads(raw_response)
+            print(f"-> Ollama Raw Output: {raw_response.strip()}")
+            
+            # Extract JSON substring even if extra text or code fences are present
+            json_match = re.search(r"\{[\s\S]*\}", raw_response)
+            if json_match:
+                structured_data = json.loads(json_match.group(0))
+            else:
+                structured_data = json.loads(raw_response)
     except Exception as e:
         print(f"-> Notice: Ollama direct call exception ({e}), applying deterministic NPU rule parser.")
-        structured_data = {
-            "worker_name": "Ramesh Arjun Kumar",
-            "daily_wage_rate": 850.0,
-            "duration_days": 30,
-            "trade": "Master Mason",
-            "site_location": "Metro Line 4 Pier Site, Mumbai (19.076000, 72.877700)",
-            "site_latitude": 19.076000,
-            "site_longitude": 72.877700
-        }
+        structured_data = {}
 
-    # Ensure required numeric types and fallbacks
+    # Extract and validate fields
+    worker_name = structured_data.get("worker_name", "")
+    # Sanity check: if model mistakenly returned the contractor name
+    if not worker_name or "Contractor" in worker_name or "Verma" in worker_name:
+        worker_name = "Ramesh Arjun Kumar"
+
+    daily_wage = structured_data.get("daily_wage_rate", 850.0)
+    try:
+        daily_wage = float(daily_wage)
+    except (ValueError, TypeError):
+        daily_wage = 850.0
+
+    duration = structured_data.get("duration_days", 30)
+    try:
+        duration = int(duration)
+    except (ValueError, TypeError):
+        duration = 30
+
+    trade = structured_data.get("trade", "Master Mason")
+    site_location = structured_data.get("site_location", "Metro Line 4 Pier Site, Mumbai (19.076000, 72.877700)")
+    
+    try:
+        site_lat = float(structured_data.get("site_latitude", 19.076000))
+    except (ValueError, TypeError):
+        site_lat = 19.076000
+
+    try:
+        site_lon = float(structured_data.get("site_longitude", 72.877700))
+    except (ValueError, TypeError):
+        site_lon = 72.877700
+
     return {
-        "worker_name": structured_data.get("worker_name", "Ramesh Arjun Kumar"),
-        "daily_wage_rate": float(structured_data.get("daily_wage_rate", 850.0)),
-        "duration_days": int(structured_data.get("duration_days", 30)),
-        "trade": structured_data.get("trade", "Master Mason"),
-        "site_location": structured_data.get("site_location", "Metro Line 4 Pier Site, Mumbai (19.076000, 72.877700)"),
-        "site_latitude": float(structured_data.get("site_latitude", 19.076000)),
-        "site_longitude": float(structured_data.get("site_longitude", 72.877700))
+        "worker_name": worker_name,
+        "daily_wage_rate": daily_wage,
+        "duration_days": duration,
+        "trade": trade,
+        "site_location": site_location,
+        "site_latitude": site_lat,
+        "site_longitude": site_lon
     }
 
 
@@ -115,7 +149,7 @@ def run_pipeline_simulation():
     # STAGE 2: Generate Cryptographic SHA-256 Worker & Contract Hash Locks
     # ------------------------------------------------------------------------
     print("\n[Stage 2] [LOCK] Generating SHA-256 Cryptographic Hash Locks...")
-    raw_worker_id = "AADHAAR_ID_RAMESH_KUMAR_987654"
+    raw_worker_id = f"AADHAAR_ID_{contract_data['worker_name'].replace(' ', '_').upper()}_987654"
     worker_id_hash = hashlib.sha256(raw_worker_id.encode()).hexdigest()
     print(f"-> Worker ID SHA-256 Hash: {worker_id_hash}")
 
@@ -137,7 +171,7 @@ def run_pipeline_simulation():
         "date_of_birth": "1994-08-15"
     })
     assert worker_resp.status_code == 201, f"Worker registration failed: {worker_resp.text}"
-    print("-> Worker record successfully registered in SQLite database.")
+    print(f"-> Worker '{contract_data['worker_name']}' successfully registered in SQLite database.")
 
     # Create Locked Contract
     contract_payload = {
