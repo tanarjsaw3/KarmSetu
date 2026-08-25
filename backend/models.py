@@ -15,19 +15,26 @@ class Worker(Base):
 
     # Relationships
     attendances = relationship("Attendance", back_populates="worker", cascade="all, delete-orphan")
+    contracts = relationship("Contract", back_populates="worker")
 
 
 class Contract(Base):
     __tablename__ = "contracts"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    worker_id_hash = Column(String(64), ForeignKey("workers.id_hash"), nullable=True, index=True, doc="Optional direct SHA-256 reference to Worker")
     worker_name = Column(String(255), nullable=False, doc="Worker name associated with contract")
     daily_wage_rate = Column(Float, nullable=False, doc="Agreed daily wage rate in INR")
     duration_days = Column(Integer, nullable=False, doc="Duration of contract in days")
     trade = Column(String(100), nullable=False, doc="Trade/Skill specification (e.g., Mason, Carpenter, Electrician)")
     site_location = Column(String(255), nullable=False, doc="Construction/Work site location")
+    site_latitude = Column(Float, nullable=True, doc="Optional target site GPS latitude")
+    site_longitude = Column(Float, nullable=True, doc="Optional target site GPS longitude")
     contract_hash = Column(String(64), nullable=False, unique=True, index=True, doc="Locked SHA-256 contract hash string")
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    # Relationship
+    worker = relationship("Worker", back_populates="contracts")
 
 
 class Attendance(Base):
