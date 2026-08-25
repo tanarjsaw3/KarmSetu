@@ -42,6 +42,31 @@ class ContractResponse(ContractBase):
     model_config = ConfigDict(from_attributes=True)
 
 
+# Lock Spoken Contract Schemas (Ollama Llama 3.2 Integration)
+class LockContractRequest(BaseModel):
+    spoken_text: str = Field(..., min_length=5, description="Spoken verbal work agreement transcript to extract and lock")
+    worker_id_hash: Optional[str] = Field(None, min_length=64, max_length=64, description="Optional SHA-256 identity hash of the worker")
+    site_latitude: Optional[float] = Field(None, ge=-90.0, le=90.0, description="Optional GPS latitude override")
+    site_longitude: Optional[float] = Field(None, ge=-180.0, le=180.0, description="Optional GPS longitude override")
+
+
+class LockContractResponse(BaseModel):
+    status: str
+    message: str
+    contract_id: int
+    contract_hash: str
+    worker_name: str
+    worker_id_hash: Optional[str] = None
+    daily_wage_rate: float
+    duration_days: int
+    trade: str
+    site_location: str
+    site_latitude: Optional[float] = None
+    site_longitude: Optional[float] = None
+    created_at: Optional[datetime] = None
+    model_config = ConfigDict(from_attributes=True)
+
+
 # Attendance Schemas
 class AttendanceBase(BaseModel):
     worker_id_hash: str = Field(..., min_length=64, max_length=64)
@@ -87,8 +112,9 @@ class DailyCheckinResponse(BaseModel):
 
 class AuditPaymentRequest(BaseModel):
     worker_id_hash: str = Field(..., min_length=64, max_length=64, description="SHA-256 identity hash of the worker")
-    received_amount: float = Field(..., ge=0, description="Disbursed/incoming payment value in INR")
-    contract_id: Optional[int] = Field(None, description="Optional contract ID to audit (defaults to active/latest contract)")
+    amount_paid: Optional[float] = Field(None, ge=0, description="Actual amount paid to worker in INR")
+    received_amount: Optional[float] = Field(None, ge=0, description="Alternative field for amount paid")
+    contract_id: Optional[int] = Field(None, description="Optional contract ID to audit")
 
 
 class AuditPaymentResponse(BaseModel):
@@ -102,9 +128,12 @@ class AuditPaymentResponse(BaseModel):
     site_location: str
     daily_wage_rate: float
     verified_workdays: int
+    expected_payment: float
     expected_amount: float
+    amount_paid: float
     received_amount: float
     deficit: float
     message: str
+    download_file_name: Optional[str] = None
     evidence_bundle: Optional[str] = None
     download_evidence_url: Optional[str] = None
