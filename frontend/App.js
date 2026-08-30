@@ -1,9 +1,10 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import { registerRootComponent } from "expo";
 import { AppProvider } from "./src/context/AppContext";
 import AppNavigator from "./src/navigation/AppNavigator";
 
-export default function App() {
+function App() {
   return (
     <AppProvider>
       <View style={styles.container}>
@@ -19,3 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#000000"
   }
 });
+
+registerRootComponent(App);
+export default App;
