@@ -3,35 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KarmSetu - Mobile Web Simulator (Light & AMOLED)</title>
+  <title>KarmSetu - Next-Gen Worker Dignity & Wage Protection</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================================
-       THEME DESIGN TOKENS (LIGHT DEFAULT + DARK TOGGLE)
+       MODERN PREMIUM DESIGN SYSTEM (LIGHT & AMOLED DUAL THEME)
        ========================================================================== */
     :root {
-      --bg-page: #f1f5f9;
+      --bg-page: #eef2f6;
+      --phone-outer: #0f172a;
       --phone-border: #cbd5e1;
-      --phone-shadow: rgba(15, 23, 42, 0.12);
-      
+      --phone-shadow: rgba(15, 23, 42, 0.16);
+
       --bg: #ffffff;
+      --bg-gradient: radial-gradient(circle at 50% 0%, #eff6ff 0%, #ffffff 75%);
       --surface: #f8fafc;
+      --surface-subtle: #f1f5f9;
       --card: #ffffff;
       --card-border: #e2e8f0;
       --card-elevated: #ffffff;
-      --card-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+      --card-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      --glass-bg: rgba(255, 255, 255, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.6);
 
       --primary: #2563eb;
+      --primary-hover: #1d4ed8;
       --primary-light: #eff6ff;
       --primary-border: #bfdbfe;
-      --primary-glow: rgba(37, 99, 235, 0.15);
+      --primary-glow: rgba(37, 99, 235, 0.2);
 
       --success: #059669;
       --success-light: #ecfdf5;
       --success-border: #a7f3d0;
-      --success-glow: rgba(5, 150, 105, 0.15);
+      --success-glow: rgba(5, 150, 105, 0.2);
 
       --warning: #d97706;
       --warning-light: #fffbeb;
@@ -40,57 +46,63 @@
       --danger: #dc2626;
       --danger-light: #fef2f2;
       --danger-border: #fecaca;
-      --danger-glow: rgba(220, 38, 38, 0.18);
+      --danger-glow: rgba(220, 38, 38, 0.22);
 
+      --indigo: #4f46e5;
       --purple: #7c3aed;
-      --purple-light: #f5f3ff;
 
       --text-main: #0f172a;
       --text-sub: #475569;
       --text-muted: #94a3b8;
       --border: #e2e8f0;
-      --notch-bg: #e2e8f0;
+      --notch-bg: #0f172a;
     }
 
     [data-theme="dark"] {
-      --bg-page: #05070a;
+      --bg-page: #04060a;
+      --phone-outer: #1e293b;
       --phone-border: #1e2433;
-      --phone-shadow: rgba(0, 0, 0, 0.9);
+      --phone-shadow: rgba(0, 0, 0, 0.95);
 
-      --bg: #000000;
-      --surface: #0a0c10;
-      --card: #12151d;
-      --card-border: #1e2433;
-      --card-elevated: #181d28;
-      --card-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      --bg: #07090e;
+      --bg-gradient: radial-gradient(circle at 50% 0%, #0d1527 0%, #07090e 80%);
+      --surface: #0e131f;
+      --surface-subtle: #141b2d;
+      --card: #121826;
+      --card-border: #1e293b;
+      --card-elevated: #161e31;
+      --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      --glass-bg: rgba(18, 24, 38, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.08);
 
-      --primary: #00f0ff;
-      --primary-light: rgba(0, 240, 255, 0.1);
-      --primary-border: rgba(0, 240, 255, 0.3);
-      --primary-glow: rgba(0, 240, 255, 0.25);
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --primary-light: rgba(56, 189, 248, 0.12);
+      --primary-border: rgba(56, 189, 248, 0.3);
+      --primary-glow: rgba(56, 189, 248, 0.3);
 
-      --success: #00ff88;
-      --success-light: rgba(0, 255, 136, 0.1);
-      --success-border: rgba(0, 255, 136, 0.3);
-      --success-glow: rgba(0, 255, 136, 0.2);
+      --success: #10b981;
+      --success-light: rgba(16, 185, 129, 0.12);
+      --success-border: rgba(16, 185, 129, 0.3);
+      --success-glow: rgba(16, 185, 129, 0.25);
 
-      --warning: #ffb800;
-      --warning-light: rgba(255, 184, 0, 0.1);
-      --warning-border: rgba(255, 184, 0, 0.3);
+      --warning: #f59e0b;
+      --warning-light: rgba(245, 158, 11, 0.12);
+      --warning-border: rgba(245, 158, 11, 0.3);
 
-      --danger: #ff3366;
-      --danger-light: rgba(255, 51, 102, 0.12);
-      --danger-border: rgba(255, 51, 102, 0.35);
-      --danger-glow: rgba(255, 51, 102, 0.3);
+      --danger: #f43f5e;
+      --danger-light: rgba(244, 63, 94, 0.14);
+      --danger-border: rgba(244, 63, 94, 0.35);
+      --danger-glow: rgba(244, 63, 94, 0.35);
 
+      --indigo: #6366f1;
       --purple: #a855f7;
-      --purple-light: rgba(168, 85, 247, 0.12);
 
-      --text-main: #ffffff;
+      --text-main: #f8fafc;
       --text-sub: #94a3b8;
       --text-muted: #64748b;
-      --border: #232a3b;
-      --notch-bg: #1e2433;
+      --border: #1e293b;
+      --notch-bg: #000000;
     }
 
     * {
@@ -110,31 +122,42 @@
       justify-content: center;
       align-items: center;
       padding: 24px 16px;
-      transition: background 0.3s ease;
+      transition: background 0.35s ease, color 0.35s ease;
+      background-image: radial-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
 
-    /* Top Controls Bar */
+    /* Top Control Bar */
     .top-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      max-width: 430px;
-      margin-bottom: 12px;
+      max-width: 420px;
+      margin-bottom: 14px;
     }
     .toolbar-title {
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 13.5px;
+      font-weight: 800;
       color: var(--text-sub);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+    }
+    .brand-pill {
+      background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
     }
     .theme-toggle-btn {
       background: var(--card);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
@@ -149,57 +172,177 @@
       transform: translateY(-1px);
     }
 
-    /* Outer Phone Frame */
+    /* Device Container */
     .phone-container {
-      width: 410px;
-      height: 844px;
+      width: 414px;
+      height: 852px;
       background: var(--bg);
-      border: 8px solid var(--phone-border);
-      border-radius: 48px;
+      background-image: var(--bg-gradient);
+      border: 10px solid var(--phone-outer);
+      border-radius: 50px;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 45px -10px var(--phone-shadow), 0 0 0 1px rgba(0,0,0,0.05);
-      transition: background 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 25px 60px -12px var(--phone-shadow), 0 0 0 1px rgba(255,255,255,0.1);
+      transition: all 0.35s ease;
     }
 
-    /* Top Dynamic Island / Speaker Notch */
+    /* iPhone 16 Style Dynamic Island */
     .notch-bar {
-      height: 30px;
-      background: var(--bg);
+      height: 34px;
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      z-index: 50;
+      z-index: 60;
     }
-    .notch {
-      width: 110px;
-      height: 18px;
+    .dynamic-island {
+      width: 116px;
+      height: 24px;
       background: var(--notch-bg);
-      border-radius: 12px;
-      position: relative;
+      border-radius: 20px;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      padding-right: 12px;
+      justify-content: space-between;
+      padding: 0 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: width 0.3s ease;
     }
-    .notch-camera {
+    .island-pill {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #475569;
+      background: var(--primary);
+    }
+    .island-cam {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #334155;
     }
 
-    /* App Header */
-    .app-header {
+    /* ==========================================================================
+       1. AUTHENTIC LOGIN & SPLASH SCREEN
+       ========================================================================== */
+    .login-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 16px 12px;
+      background-image: var(--bg-gradient);
+      z-index: 100;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      justify-content: space-between;
+      padding: 50px 24px 34px;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    }
+    .login-screen.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .app-logo-box {
+      width: 86px;
+      height: 86px;
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      border-radius: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
+      margin-bottom: 20px;
+      position: relative;
+      animation: floatLogo 3.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatLogo {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-8px) rotate(2deg); }
+    }
+    .logo-symbol {
+      font-size: 42px;
+      color: #ffffff;
+    }
+    .splash-title {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .splash-tagline {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      line-height: 1.45;
+      max-width: 280px;
+      font-weight: 500;
+    }
+
+    /* Graphic Hero Card in Login */
+    .hero-graphic-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--card-shadow);
+    }
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .f-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .f-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Login Form Box */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ==========================================================================
+       2. MAIN APP VIEWPORT & NAVIGATION
+       ========================================================================== */
+    .app-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 18px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       z-index: 40;
     }
 
@@ -208,54 +351,60 @@
       justify-content: space-between;
       align-items: center;
     }
-
-    .brand-logo {
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      color: var(--primary);
+    .brand-group {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
+    }
+    .brand-logo {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: var(--primary);
+    }
+    .version-tag {
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 6px;
+      border-radius: 6px;
     }
 
-    .status-badge {
+    .user-profile-pill {
       display: flex;
       align-items: center;
       gap: 6px;
-      background: var(--success-light);
-      border: 1px solid var(--success-border);
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 10.5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 4px 10px 4px 6px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 11px;
+      color: #fff;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      color: var(--success);
-      transition: all 0.3s ease;
     }
-    .status-badge.alert {
-      color: var(--danger);
-      border-color: var(--danger-border);
-      background: var(--danger-light);
-    }
-
-    .status-dot {
+    .status-dot-mini {
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: var(--success);
     }
-    .status-dot.alert {
+    .status-dot-mini.alert {
       background: var(--danger);
-      animation: pulse 1.2s infinite;
+      animation: pulse 1s infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* Breadcrumb Step Navigation */
+    /* Screen Progress Tabs */
     .step-bar {
       display: flex;
       gap: 6px;
@@ -264,40 +413,39 @@
       flex: 1;
       height: 4px;
       background: var(--border);
-      border-radius: 2px;
+      border-radius: 3px;
       cursor: pointer;
       transition: all 0.25s ease;
     }
     .step-seg.active {
       background: var(--primary);
-      box-shadow: 0 0 6px var(--primary-glow);
+      box-shadow: 0 0 8px var(--primary-glow);
     }
     .step-seg.alert.active {
       background: var(--danger);
+      box-shadow: 0 0 8px var(--danger-glow);
     }
 
-    /* Scrollable Screens Area */
+    /* Screens Viewport */
     .screens-viewport {
       flex: 1;
       overflow-y: auto;
-      overflow-x: hidden;
-      padding: 16px;
+      padding: 18px 16px;
       display: flex;
       flex-direction: column;
-      position: relative;
     }
 
     .screen {
       display: none;
       flex-direction: column;
-      animation: fadeIn 0.25s ease-out;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .screen.active {
       display: flex;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -306,27 +454,27 @@
       margin-bottom: 14px;
     }
     .screen-title {
-      font-size: 20px;
-      font-weight: 800;
+      font-size: 21px;
+      font-weight: 900;
       color: var(--text-main);
-      letter-spacing: -0.4px;
+      letter-spacing: -0.5px;
       margin-bottom: 3px;
     }
     .screen-desc {
       font-size: 12.5px;
       color: var(--text-sub);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     /* Card Component */
     .card {
       background: var(--card);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 12px;
+      border-radius: 18px;
+      padding: 15px;
+      margin-bottom: 14px;
       box-shadow: var(--card-shadow);
-      transition: all 0.2s ease;
+      transition: transform 0.2s ease;
     }
     .card-title {
       font-size: 11px;
@@ -344,8 +492,8 @@
     .btn {
       width: 100%;
       border: none;
-      border-radius: 12px;
-      padding: 12px 16px;
+      border-radius: 14px;
+      padding: 13px 18px;
       font-size: 13.5px;
       font-weight: 800;
       letter-spacing: 0.3px;
@@ -355,32 +503,33 @@
       align-items: center;
       gap: 8px;
       transition: all 0.2s ease;
+      font-family: inherit;
     }
     .btn:active {
       transform: scale(0.98);
     }
     .btn-primary {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
       color: #ffffff;
-      box-shadow: 0 4px 12px var(--primary-glow);
-    }
-    .btn-primary:hover {
-      opacity: 0.95;
+      box-shadow: 0 6px 16px var(--primary-glow);
     }
     .btn-success {
-      background: var(--success);
+      background: linear-gradient(135deg, var(--success) 0%, #047857 100%);
       color: #ffffff;
-      box-shadow: 0 4px 12px var(--success-glow);
+      box-shadow: 0 6px 16px var(--success-glow);
     }
     .btn-danger {
-      background: var(--danger);
+      background: linear-gradient(135deg, var(--danger) 0%, #b91c1c 100%);
       color: #ffffff;
-      box-shadow: 0 4px 14px var(--danger-glow);
+      box-shadow: 0 6px 16px var(--danger-glow);
     }
     .btn-outline {
-      background: transparent;
+      background: var(--surface);
       border: 1px solid var(--border);
       color: var(--text-main);
+    }
+    .btn-outline:hover {
+      background: var(--surface-subtle);
     }
 
     /* Inputs */
@@ -388,14 +537,15 @@
       width: 100%;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
+      border-radius: 12px;
+      padding: 12px 14px;
       color: var(--text-main);
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
       outline: none;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-family: inherit;
+      transition: border-color 0.2s;
     }
     .input-field:focus {
       border-color: var(--primary);
@@ -406,7 +556,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 0;
+      padding: 7px 0;
       border-bottom: 1px dashed var(--border);
       font-size: 12.5px;
     }
@@ -424,14 +574,12 @@
       font-size: 11.5px;
     }
 
-    /* ==========================================================================
-       SCREEN 1: SCANNER & ONBOARDING
-       ========================================================================== */
+    /* Viewfinder Camera */
     .viewfinder {
       height: 165px;
-      background: #0f172a;
+      background: #090d16;
       border-radius: 14px;
-      border: 1px solid #334155;
+      border: 1px solid #1e293b;
       position: relative;
       display: flex;
       justify-content: center;
@@ -442,15 +590,15 @@
     .laser-line {
       position: absolute;
       width: 90%;
-      height: 2px;
-      background: #00ff88;
-      box-shadow: 0 0 12px #00ff88, 0 0 4px #00ff88;
+      height: 2.5px;
+      background: #10b981;
+      box-shadow: 0 0 14px #10b981, 0 0 4px #10b981;
       top: 10%;
       opacity: 0;
     }
     .viewfinder.scanning .laser-line {
       opacity: 1;
-      animation: scanAnim 1.6s infinite alternate ease-in-out;
+      animation: scanAnim 1.5s infinite alternate ease-in-out;
     }
     @keyframes scanAnim {
       0% { top: 12%; }
@@ -463,36 +611,34 @@
       border-color: var(--primary);
       border-style: solid;
     }
-    .c-tl { top: 12px; left: 12px; border-width: 2.5px 0 0 2.5px; }
-    .c-tr { top: 12px; right: 12px; border-width: 2.5px 2.5px 0 0; }
-    .c-bl { bottom: 12px; left: 12px; border-width: 0 0 2.5px 2.5px; }
-    .c-br { bottom: 12px; right: 12px; border-width: 0 2.5px 2.5px 0; }
+    .c-tl { top: 12px; left: 12px; border-width: 3px 0 0 3px; }
+    .c-tr { top: 12px; right: 12px; border-width: 3px 3px 0 0; }
+    .c-bl { bottom: 12px; left: 12px; border-width: 0 0 3px 3px; }
+    .c-br { bottom: 12px; right: 12px; border-width: 0 3px 3px 0; }
 
-    /* ==========================================================================
-       SCREEN 2: VOICE AGREEMENT
-       ========================================================================== */
+    /* Waveform Box */
     .waveform-box {
-      height: 60px;
+      height: 64px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       margin-bottom: 12px;
       padding: 0 16px;
     }
     .wave-bar {
-      width: 4px;
+      width: 4.5px;
       height: 8px;
       background: var(--text-muted);
-      border-radius: 2px;
+      border-radius: 3px;
       transition: height 0.15s ease, background 0.2s ease;
     }
     .waveform-box.recording .wave-bar {
       background: var(--warning);
-      animation: waveAnim 0.8s infinite ease-in-out alternate;
+      animation: waveAnim 0.75s infinite ease-in-out alternate;
     }
     .waveform-box.recording .wave-bar:nth-child(2) { animation-delay: 0.1s; }
     .waveform-box.recording .wave-bar:nth-child(3) { animation-delay: 0.25s; }
@@ -504,13 +650,13 @@
 
     @keyframes waveAnim {
       0% { height: 6px; }
-      100% { height: 42px; }
+      100% { height: 46px; }
     }
 
     .transcript-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 12px;
       font-size: 12px;
       line-height: 1.5;
@@ -519,14 +665,12 @@
       font-style: italic;
     }
 
-    /* ==========================================================================
-       SCREEN 3: GEOFENCE RADAR & CHECK-IN
-       ========================================================================== */
+    /* Radar Box */
     .radar-container {
       height: 140px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -536,22 +680,22 @@
       margin-bottom: 12px;
     }
     .radar-circle {
-      width: 90px;
-      height: 90px;
+      width: 95px;
+      height: 95px;
       border: 1.5px dashed var(--primary);
       border-radius: 50%;
       position: absolute;
-      animation: rotateRadar 6s linear infinite;
+      animation: rotateRadar 5s linear infinite;
     }
     @keyframes rotateRadar {
       100% { transform: rotate(360deg); }
     }
     .radar-dot {
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       background: var(--success);
       border-radius: 50%;
-      box-shadow: 0 0 10px var(--success);
+      box-shadow: 0 0 12px var(--success);
       z-index: 2;
     }
     .radar-label {
@@ -562,19 +706,17 @@
       z-index: 2;
     }
 
-    /* ==========================================================================
-       SCREEN 4: WALLET & WAGE AUDIT
-       ========================================================================== */
+    /* Wallet Balance Hero Card */
     .balance-card {
-      background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+      background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%);
       color: #ffffff;
-      border-radius: 18px;
-      padding: 18px;
+      border-radius: 20px;
+      padding: 20px;
       margin-bottom: 14px;
-      box-shadow: 0 8px 20px var(--primary-glow);
+      box-shadow: 0 10px 24px rgba(29, 78, 216, 0.28);
     }
     .balance-label {
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -582,16 +724,16 @@
       margin-bottom: 4px;
     }
     .balance-amount {
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 900;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
+      letter-spacing: -0.8px;
+      margin-bottom: 14px;
     }
     .balance-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      padding-top: 10px;
+      gap: 10px;
+      padding-top: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
     .b-metric {
@@ -599,7 +741,7 @@
       opacity: 0.85;
     }
     .b-val {
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 800;
     }
 
@@ -607,17 +749,16 @@
     .deficit-alert-banner {
       background: var(--danger-light);
       border: 1px solid var(--danger-border);
-      border-radius: 14px;
-      padding: 12px;
+      border-radius: 16px;
+      padding: 14px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      animation: fadeIn 0.3s ease;
+      gap: 12px;
+      margin-bottom: 14px;
     }
     .alert-icon-box {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       background: var(--danger);
       color: #ffffff;
       border-radius: 50%;
@@ -626,9 +767,10 @@
       align-items: center;
       font-size: 16px;
       flex-shrink: 0;
+      box-shadow: 0 4px 10px var(--danger-glow);
     }
     .alert-title {
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--danger);
     }
@@ -637,15 +779,14 @@
       color: var(--text-sub);
     }
 
-    /* ==========================================================================
-       BOTTOM NAVIGATION BAR
-       ========================================================================== */
+    /* Bottom Navigation Bar */
     .bottom-nav {
-      background: var(--bg);
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-around;
-      padding: 8px 4px;
+      padding: 8px 6px;
       z-index: 50;
     }
     .nav-btn {
@@ -656,13 +797,14 @@
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-size: 9.5px;
+      font-size: 10px;
       font-weight: 700;
       cursor: pointer;
       gap: 3px;
-      padding: 4px 0;
-      border-radius: 8px;
+      padding: 6px 0;
+      border-radius: 10px;
       transition: all 0.2s ease;
+      font-family: inherit;
     }
     .nav-btn.active {
       color: var(--primary);
@@ -679,20 +821,20 @@
     /* Toast Notification */
     .toast {
       position: absolute;
-      bottom: 75px;
+      bottom: 80px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
       background: #0f172a;
       color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 20px;
-      font-size: 11.5px;
+      padding: 10px 18px;
+      border-radius: 24px;
+      font-size: 12px;
       font-weight: 700;
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease;
-      z-index: 100;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      z-index: 120;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
     .toast.show {
       transform: translateX(-50%) translateY(0);
@@ -705,32 +847,81 @@
   <!-- Desktop Top Control Bar -->
   <div class="top-toolbar">
     <div class="toolbar-title">
-      <span>⚡</span> <strong>KarmSetu</strong> Mobile Web Simulator
+      <span class="brand-pill">KARMSETU</span>
+      <span>Mobile Simulation</span>
     </div>
     <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
       <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
     </button>
   </div>
 
-  <!-- Mobile Frame -->
+  <!-- Mobile Frame Container -->
   <div class="phone-container">
-    <!-- Dynamic Island / Speaker Notch -->
-    <div class="notch-bar">
-      <div class="notch">
-        <div class="notch-camera"></div>
+
+    <!-- 1. AUTHENTIC WELCOME & LOGIN SCREEN OVERLAY -->
+    <div class="login-screen" id="loginScreen">
+      <div class="notch-bar" style="position: absolute; top:0; left:0; width:100%;">
+        <div class="dynamic-island">
+          <div class="island-pill"></div>
+          <div class="island-cam"></div>
+        </div>
+      </div>
+
+      <div class="splash-hero">
+        <div class="app-logo-box">
+          <div class="logo-symbol">⚡</div>
+        </div>
+        <h1 class="splash-title">KarmSetu</h1>
+        <p class="splash-tagline">NPU-Driven Wage Protection & Verifiable Work Record Protocol</p>
+      </div>
+
+      <div class="hero-graphic-card">
+        <div class="feature-row">
+          <div class="f-icon">🎙️</div>
+          <div class="f-text">Speech-to-Contract AI Locking</div>
+        </div>
+        <div class="feature-row">
+          <div class="f-icon">📍</div>
+          <div class="f-text">1,500m GPS Geofence & Liveness</div>
+        </div>
+        <div class="feature-row">
+          <div class="f-icon">🛡️</div>
+          <div class="f-text">Automated Wage Theft Evidence Bundles</div>
+        </div>
+      </div>
+
+      <div class="login-form">
+        <input type="text" class="input-field" id="loginWorkerInput" value="+91 98765 43210" placeholder="Enter Registered Phone Number">
+        <button class="btn btn-primary" onclick="proceedLogin()">
+          <span>⚡</span> Enter Worker Dashboard
+        </button>
+        <button class="btn btn-outline" onclick="proceedLogin()" style="font-size:12.5px;">
+          <span>🪪</span> Scan Aadhaar / Biometric Pass
+        </button>
       </div>
     </div>
 
-    <!-- App Header -->
+    <!-- 2. MAIN APP NAVIGATION & SCREENS -->
+    <div class="notch-bar">
+      <div class="dynamic-island">
+        <div class="island-pill"></div>
+        <div class="island-cam"></div>
+      </div>
+    </div>
+
     <header class="app-header">
       <div class="header-top">
-        <div class="brand-logo">⚡ KARMSETU</div>
-        <div class="status-badge" id="npuStatusBadge">
-          <div class="status-dot" id="npuStatusDot"></div>
-          <span id="npuStatusText">NPU SECURE</span>
+        <div class="brand-group">
+          <div class="brand-logo">⚡ KARMSETU</div>
+          <span class="version-tag">v2.0 AI</span>
+        </div>
+        <div class="user-profile-pill" onclick="logoutToSplash()">
+          <div class="avatar">R</div>
+          <div class="status-dot-mini" id="headerDot"></div>
+          <span style="font-size:11px; font-weight:700;">Ramesh</span>
         </div>
       </div>
-      <!-- 5-Step Breadcrumb Navigation -->
+      <!-- 5-Step Segment Navigation -->
       <div class="step-bar">
         <div class="step-seg active" onclick="switchScreen(0)"></div>
         <div class="step-seg" onclick="switchScreen(1)"></div>
@@ -740,22 +931,19 @@
       </div>
     </header>
 
-    <!-- Screens Viewport -->
     <main class="screens-viewport">
 
-      <!-- ====================================================================
-           SCREEN 1: WORKER ID & ONBOARDING
-           ==================================================================== -->
+      <!-- SCREEN 1: WORKER ID & ONBOARDING -->
       <section class="screen active" id="screen-0">
         <div class="screen-header">
-          <h1 class="screen-title">Worker Identity</h1>
-          <p class="screen-desc">Biometric onboarding & cryptographically salted worker credential hash.</p>
+          <h2 class="screen-title">Worker Identity</h2>
+          <p class="screen-desc">Biometric onboarding & cryptographically salted worker identity hash.</p>
         </div>
 
         <div class="card">
           <div class="card-title">
-            <span>NPU QR SCANNER</span>
-            <span style="color:var(--primary); font-size:10px;">ENCRYPTED</span>
+            <span>NPU CAMERA SCANNER</span>
+            <span style="color:var(--primary); font-size:10px;">AES-256</span>
           </div>
           <div class="viewfinder" id="qrViewfinder">
             <div class="corner c-tl"></div>
@@ -765,7 +953,7 @@
             <div class="laser-line"></div>
             <div style="color:#94a3b8; font-size:12px; font-weight:700; z-index:2; text-align:center;">
               <div style="font-size:28px; margin-bottom:4px;">🪪</div>
-              <span id="scanStatusText">Position Worker Card in Frame</span>
+              <span id="scanStatusText">Align Worker Card in Frame</span>
             </div>
           </div>
           <button class="btn btn-primary" onclick="simulateQRScan()">
@@ -774,13 +962,13 @@
         </div>
 
         <div class="card">
-          <div class="card-title">VERIFIED PROFILE</div>
+          <div class="card-title">VERIFIED WORKER LEDGER</div>
           <div class="info-row">
-            <span class="info-label">Full Name</span>
-            <span class="info-val" id="workerNameDisplay">Ramesh Arjun Kumar</span>
+            <span class="info-label">Worker Name</span>
+            <span class="info-val">Ramesh Arjun Kumar</span>
           </div>
           <div class="info-row">
-            <span class="info-label">Trade / Skill</span>
+            <span class="info-label">Designated Trade</span>
             <span class="info-val">Master Mason</span>
           </div>
           <div class="info-row">
@@ -790,12 +978,10 @@
         </div>
       </section>
 
-      <!-- ====================================================================
-           SCREEN 2: SPOKEN AGREEMENT (/lock-contract)
-           ==================================================================== -->
+      <!-- SCREEN 2: SPOKEN AGREEMENT -->
       <section class="screen" id="screen-1">
         <div class="screen-header">
-          <h1 class="screen-title">Spoken Agreement</h1>
+          <h2 class="screen-title">Spoken Agreement</h2>
           <p class="screen-desc">Speech-to-contract AI extraction locked into tamper-proof ledger.</p>
         </div>
 
@@ -832,12 +1018,10 @@
         </div>
       </section>
 
-      <!-- ====================================================================
-           SCREEN 3: DAILY GEOFENCE & ATTENDANCE
-           ==================================================================== -->
+      <!-- SCREEN 3: DAILY GEOFENCE ATTENDANCE -->
       <section class="screen" id="screen-2">
         <div class="screen-header">
-          <h1 class="screen-title">Daily Attendance</h1>
+          <h2 class="screen-title">Daily Attendance</h2>
           <p class="screen-desc">GPS 1,500m geofence validation & on-device facial liveness.</p>
         </div>
 
@@ -846,7 +1030,7 @@
           <div class="radar-container">
             <div class="radar-circle"></div>
             <div class="radar-dot"></div>
-            <div class="radar-label" id="radarProximityText">GPS: 19.076010, 72.877712 (4.2m away)</div>
+            <div class="radar-label" id="radarProximityText">GPS: 19.076010, 72.877712 (1.68m away)</div>
           </div>
           <button class="btn btn-success" id="checkinBtn" onclick="simulateCheckIn()">
             <span>⚡</span> Simulate Live NPU Check-In
@@ -870,12 +1054,10 @@
         </div>
       </section>
 
-      <!-- ====================================================================
-           SCREEN 4: WALLET & WAGE LEDGER
-           ==================================================================== -->
+      <!-- SCREEN 4: WALLET & WAGE AUDIT -->
       <section class="screen" id="screen-3">
         <div class="screen-header">
-          <h1 class="screen-title">Wage Ledger</h1>
+          <h2 class="screen-title">Wage Ledger</h2>
           <p class="screen-desc">Audited earnings vs disbursed payments with theft defense.</p>
         </div>
 
@@ -885,10 +1067,10 @@
           <div class="balance-grid">
             <div>
               <div class="b-metric">Verified Days</div>
-              <div class="b-val" id="verifiedDaysCount">3 Workdays</div>
+              <div class="b-val">3 Workdays</div>
             </div>
             <div>
-              <div class="b-metric">Actual Paid</div>
+              <div class="b-metric">Actual Disbursed</div>
               <div class="b-val" id="actualPaidDisplay">₹1,000.00</div>
             </div>
           </div>
@@ -912,17 +1094,15 @@
         </div>
       </section>
 
-      <!-- ====================================================================
-           SCREEN 5: WAGE THEFT DISPUTE TERMINAL
-           ==================================================================== -->
+      <!-- SCREEN 5: WAGE THEFT DISPUTE TERMINAL -->
       <section class="screen" id="screen-4">
         <div class="screen-header">
-          <h1 class="screen-title">Dispute Terminal</h1>
+          <h2 class="screen-title">Dispute Terminal</h2>
           <p class="screen-desc">Generate cryptographically verified legal evidence for recovery.</p>
         </div>
 
         <div class="deficit-alert-banner" style="background:var(--danger); color:#ffffff;">
-          <div class="alert-icon-box" style="background:rgba(0,0,0,0.2);">🚨</div>
+          <div class="alert-icon-box" style="background:rgba(0,0,0,0.25);">🚨</div>
           <div>
             <div class="alert-title" style="color:#ffffff;">CRITICAL DISCREPANCY DETECTED</div>
             <div class="alert-sub" style="color:rgba(255,255,255,0.85);">Evidence bundle ready for labor conciliation.</div>
@@ -980,43 +1160,37 @@
       </button>
     </nav>
 
-    <!-- Toast Notification Popup -->
+    <!-- Interactive Toast -->
     <div class="toast" id="toastBox">Action Successful!</div>
   </div>
 
   <script>
-    // ========================================================================
-    // STATE & THEME CONTROLLER
-    // ========================================================================
-    let currentScreenIndex = 0;
     let isDarkMode = false;
-    let currentDeficit = 1550;
 
     function toggleTheme() {
       isDarkMode = !isDarkMode;
       document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
       document.getElementById("themeIcon").textContent = isDarkMode ? "☀️" : "🌙";
       document.getElementById("themeText").textContent = isDarkMode ? "Light Mode" : "Dark Mode";
-      showToast(isDarkMode ? "AMOLED Dark Mode Enabled" : "Crisp Light Mode Enabled");
+      showToast(isDarkMode ? "AMOLED Dark Mode" : "Crisp Light Mode");
+    }
+
+    function proceedLogin() {
+      const login = document.getElementById("loginScreen");
+      login.classList.add("hidden");
+      showToast("Welcome back, Ramesh!");
+    }
+
+    function logoutToSplash() {
+      const login = document.getElementById("loginScreen");
+      login.classList.remove("hidden");
+      showToast("Returned to Welcome Screen");
     }
 
     function switchScreen(idx) {
-      currentScreenIndex = idx;
-      
-      // Update screen visibility
-      document.querySelectorAll(".screen").forEach((s, i) => {
-        s.classList.toggle("active", i === idx);
-      });
-
-      // Update step bar
-      document.querySelectorAll(".step-seg").forEach((seg, i) => {
-        seg.classList.toggle("active", i === idx);
-      });
-
-      // Update bottom nav buttons
-      document.querySelectorAll(".nav-btn").forEach((btn, i) => {
-        btn.classList.toggle("active", i === idx);
-      });
+      document.querySelectorAll(".screen").forEach((s, i) => s.classList.toggle("active", i === idx));
+      document.querySelectorAll(".step-seg").forEach((seg, i) => seg.classList.toggle("active", i === idx));
+      document.querySelectorAll(".nav-btn").forEach((btn, i) => btn.classList.toggle("active", i === idx));
     }
 
     function showToast(msg) {
@@ -1026,9 +1200,6 @@
       setTimeout(() => toast.classList.remove("show"), 2200);
     }
 
-    // ========================================================================
-    // SIMULATION ACTIONS
-    // ========================================================================
     function simulateQRScan() {
       const vf = document.getElementById("qrViewfinder");
       const statusText = document.getElementById("scanStatusText");
@@ -1040,7 +1211,7 @@
         statusText.textContent = "✅ Worker Identity Verified";
         document.getElementById("workerHashDisplay").textContent = "b4648372c600e7a51e870a398a6062f44391a15b01a8dc9f3324e58ffcbc1592";
         showToast("Salted SHA-256 Worker Hash Generated!");
-      }, 1600);
+      }, 1500);
     }
 
     function simulateLockContract() {
@@ -1055,7 +1226,7 @@
         btn.className = "btn btn-success";
         document.getElementById("contractHashDisplay").textContent = "8d278aec3af025b4c0f222aa1fb8e000d32f0008394ed01e21f8253a266ab8c3";
         showToast("Contract Locked with SHA-256 Integrity!");
-      }, 1800);
+      }, 1600);
     }
 
     function simulateCheckIn() {
@@ -1067,42 +1238,33 @@
         btn.innerHTML = "<span>✅</span> Attendance Verified Today!";
         btn.disabled = false;
         showToast("GPS Distance: 1.68m (Within 1,500m Geofence). Logged!");
-      }, 1500);
+      }, 1400);
     }
 
     function updatePaymentAudit() {
       const inputVal = parseFloat(document.getElementById("paymentInput").value) || 0;
       const expected = 2550;
       const deficit = Math.max(0, expected - inputVal);
-      currentDeficit = deficit;
 
       document.getElementById("actualPaidDisplay").textContent = `₹${inputVal.toLocaleString('en-IN')}.00`;
-      
-      const badge = document.getElementById("npuStatusBadge");
-      const dot = document.getElementById("npuStatusDot");
-      const text = document.getElementById("npuStatusText");
       const banner = document.getElementById("walletDeficitBanner");
       const sub = document.getElementById("deficitSubText");
+      const dot = document.getElementById("headerDot");
 
       if (deficit > 0) {
-        badge.className = "status-badge alert";
-        dot.className = "status-dot alert";
-        text.textContent = "DEFICIT ALERT";
         banner.style.display = "flex";
+        dot.className = "status-dot-mini alert";
         sub.textContent = `₹${deficit.toLocaleString('en-IN')}.00 withheld (${((deficit/expected)*100).toFixed(1)}% unpaid)`;
-        showToast(`Wage Theft Deficit Detected: ₹${deficit.toLocaleString('en-IN')}`);
+        showToast(`Deficit Detected: ₹${deficit.toLocaleString('en-IN')}`);
       } else {
-        badge.className = "status-badge";
-        dot.className = "status-dot";
-        text.textContent = "NPU SECURE";
         banner.style.display = "none";
-        showToast("Payment Fully Compliant (Zero Deficit)!");
+        dot.className = "status-dot-mini";
+        showToast("Payment Compliant (Zero Deficit)!");
       }
     }
 
     function downloadEvidenceBundle() {
-      showToast("Generating Official Evidence Bundle...");
-      
+      showToast("Generating Legal Evidence Bundle...");
       const bundleContent = `================================================================================
                 KARMSETU WAGE THEFT AUDIT & EVIDENCE BUNDLE
          NPU-Driven Wage Protection & Verifiable Work Record System
@@ -1162,7 +1324,7 @@ conciliation boards, trade unions, or judicial authorities for immediate recover
     }
 
     function submitToUnion() {
-      showToast("Legal Recourse Claim dispatched to Labor Board conciliation portal!");
+      showToast("Claim dispatched to Labor Board conciliation portal!");
     }
   </script>
 </body>
