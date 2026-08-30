@@ -10,12 +10,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "^57.0.16",
-    "expo-asset": "^57.0.14",
-    "react": "^18.3.1",
-    "react-native": "^0.86.3",
-    "react-native-safe-area-context": "^5.0.0",
-    "react-native-svg": "^15.9.0"
+    "expo": "~57.0.18",
+    "expo-asset": "~57.0.15",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "5.7.0",
+    "react-native-svg": "15.15.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
