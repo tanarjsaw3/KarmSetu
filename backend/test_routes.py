@@ -1,5 +1,11 @@
+import os
+import sys
 import hashlib
 from datetime import date
+
+# Ensure backend directory is in sys.path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi.testclient import TestClient
 from main import app
 from database import engine, Base
