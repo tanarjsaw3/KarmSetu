@@ -10,12 +10,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.3.0",
     "expo": "~57.0.18",
     "expo-asset": "~57.0.15",
+    "expo-font": "~11.6.0",
     "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-native": "0.86.3",
+    "react-native-reanimated": "^3.6.0",
     "react-native-safe-area-context": "5.7.0",
-    "react-native-svg": "15.15.4"
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

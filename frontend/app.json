@@ -1,5 +1,11 @@
 {
-  "android": {
-    "package": "com.anonymous.karmsetufrontend"
+  "expo": {
+    "name": "KarmSetu",
+    "slug": "karmsetu",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "android": {
+      "package": "com.anonymous.karmsetufrontend"
+    }
   }
 }
